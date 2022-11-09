@@ -1,4 +1,6 @@
 import React from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const AllServicesCard = ({ allservice }) => {
     const { _id, title, img, rating, price, desc } = allservice;
@@ -6,7 +8,7 @@ const AllServicesCard = ({ allservice }) => {
     return (
         <div>
             <div className="card bg-base-100 shadow-xl">
-                <figure><img src={img} className='h-80 w-full' alt="" /></figure>
+                <figure><PhotoProvider><PhotoView src={img}><img src={img} className='h-80 w-full' alt="" /></PhotoView></PhotoProvider></figure>
                 <div className="card-body">
                     <h2 className="card-title">
                         {title}

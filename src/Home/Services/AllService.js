@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import AllServicesCard from './AllServicesCard';
 
 const AllService = () => {
@@ -11,7 +12,7 @@ const AllService = () => {
     return (
         <div>
             <div className='text-end'>
-                <button className='btn btn-primary'>Add Service</button>
+               <Link to='/addservice'><button className='btn btn-primary'>Add Service</button></Link> 
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-6 my-6 w-3/4 mx-auto'>
             {
