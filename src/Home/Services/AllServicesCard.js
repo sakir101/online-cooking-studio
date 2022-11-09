@@ -2,6 +2,7 @@ import React from 'react';
 
 const AllServicesCard = ({ allservice }) => {
     const { _id, title, img, rating, price, desc } = allservice;
+    console.log(desc.length)
     return (
         <div>
             <div className="card bg-base-100 shadow-xl">
@@ -9,12 +10,16 @@ const AllServicesCard = ({ allservice }) => {
                 <div className="card-body">
                     <h2 className="card-title">
                         {title}
-                        <div className="badge badge-secondary">{rating}</div>
+                        <div className="badge badge-secondary">Rating: {rating}/5</div>
                     </h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                   <p>
+                    {
+                        desc.length> 100? `${desc.slice(0,100)}...`: {desc}
+                    }
+                   </p>
+                   <p className='font-bold text-red-600'>Price: {price} BDT</p>
                     <div className="card-actions justify-end">
-                        <div className="badge badge-outline">Fashion</div>
-                        <div className="badge badge-outline">Products</div>
+                        <div className="btn btn-outline">View Details</div>
                     </div>
                 </div>
             </div>
