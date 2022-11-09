@@ -11,7 +11,6 @@ const Reviews = ({ _id, title }) => {
     
     const p = 1;
     const handleReview = event => {
-        event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -54,8 +53,11 @@ const Reviews = ({ _id, title }) => {
     useEffect(()=>{
         fetch('http://localhost:5000/review')
         .then(res => res.json())
-        .then(data => setReviews(data))
-    },[])
+        .then(data => {
+            const filterData = data.filter(x => x.serviceId === _id )
+            setReviews(filterData);
+        })
+    },[_id])
     return (
         <div>
             <div className='flex justify-between my-6'>
@@ -103,7 +105,7 @@ const Reviews = ({ _id, title }) => {
             </div>
             <div>
                 {
-                    reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
+                    reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard> )
                 }
             </div>
 
