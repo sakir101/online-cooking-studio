@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddService = () => {
-    const handlePlaceOrder = event => {
+    const handlePlaceService = event => {
         event.preventDefault();
         const form = event.target;
         const title = form.title.value;
@@ -12,7 +12,7 @@ const AddService = () => {
         const price = form.price.value;
         const message = form.desc.value;
 
-        const order = {
+        const service = {
             title: title,
             img: img,
             rating: rating,
@@ -26,20 +26,20 @@ const AddService = () => {
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(order)
+            body: JSON.stringify(service)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    toast('Order successfully placed');
+                    toast('Service successfully placed');
                 }
                 form.reset();
             })
             .catch(err => console.error(err));
     }
     return (
-        <form className='w-full text-center' onSubmit={handlePlaceOrder}>
+        <form className='w-full text-center' onSubmit={handlePlaceService}>
             <h3 className='text-3xl text-blue-600 text-center'>Add Your Service</h3>
             <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-6 my-6 mx-auto'>
                 <input type="text" name='title' placeholder="Title of the food" className="input input-bordered input-primary w-full" required />
