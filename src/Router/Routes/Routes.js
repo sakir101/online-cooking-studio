@@ -6,6 +6,7 @@ import Services from "../../Home/Services/Services";
 import SingleServices from "../../Home/Services/SingleServices";
 import Main from "../../LayOut/Main";
 
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
                 path: '/checkout/:id',
                 element: <SingleServices></SingleServices>,
                 loader: ({params}) => fetch(`http://localhost:5000/allservices/${params.id}`)
-            }
+            },
+          
 
            
         ]
