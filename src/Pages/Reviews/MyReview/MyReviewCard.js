@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviewCard = ({ myReview }) => {
-    const {_id,name, img, rating, desc, serviceName, email } = myReview;
+    const {_id,name, img, rating, desc, serviceName} = myReview;
     const handleReview = event => {
         event.preventDefault()
         const form = event.target;  
@@ -35,6 +35,25 @@ const MyReviewCard = ({ myReview }) => {
 
     const refresh = () =>{
         window.location.reload(false);
+    }
+
+    const handleDelete = () =>{
+        const proceed = window.confirm(`Are you sure you want to delete`)
+        if(proceed){
+            fetch(`http://localhost:5000/review/${_id}`, {
+                method: 'DELETE'
+            })
+            .then(res=> res.json())
+            .then(data=>{
+                console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('Delete Review Successfully');
+                        window.location.reload(false);
+                    }
+                
+            })
+
+        }
     }
     return (
         <div className='bg-slate-200 my-5 p-10'>
@@ -76,7 +95,7 @@ const MyReviewCard = ({ myReview }) => {
 
                     </div>
                 </div>
-                <button className='btn btn-sm bg-red-700 mx-3'>Delete</button>
+                <button className='btn btn-sm bg-red-700 mx-3' onClick={handleDelete}>Delete</button>
             </div>
         </div>
     );
