@@ -47,7 +47,7 @@ const MyReviewCard = ({ myReview }) => {
             .then(data=>{
                 console.log(data);
                     if (data.deletedCount > 0) {
-                        alert('Delete Review Successfully');
+                        toast('Delete Review Successfully');
                         window.location.reload(false);
                     }
                 
@@ -97,6 +97,7 @@ const MyReviewCard = ({ myReview }) => {
                 </div>
                 <button className='btn btn-sm bg-red-700 mx-3' onClick={handleDelete}>Delete</button>
             </div>
+            <ToastContainer />
         </div>
     );
 };

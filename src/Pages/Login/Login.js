@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import img from '../../Assets/signup/login.jpg'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
@@ -34,10 +36,11 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        toast('Login Successful')
                         localStorage.setItem('rannabannaToken', data.token);
                         navigate(from, { replace: true });
                     })
-                
+
             })
             .catch(err => console.log(err))
     }
@@ -72,6 +75,7 @@ const Login = () => {
                     <p className='text-sm text-center'>New to Rannabanna <Link to='/signup' className='text-red-600  font-bold'>Sign Up</Link></p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

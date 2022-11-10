@@ -1,6 +1,8 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import img from '../../Assets/signup/signup.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
@@ -20,6 +22,7 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                toast('Signup successful')
             })
             .catch(err => console.error(err));
     }
@@ -77,6 +80,7 @@ const Signup = () => {
                     <p className='text-sm text-center'>Already have an account <Link to='/login' className='text-red-600  font-bold'>Log in</Link></p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
