@@ -3,9 +3,11 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import img from '../../Assets/signup/signup.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 const Signup = () => {
     const {createUser, signInGoogleHandler} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    useTitle('Register')
     const handleSignup = event => { 
         event.preventDefault();
         const form = event.target;

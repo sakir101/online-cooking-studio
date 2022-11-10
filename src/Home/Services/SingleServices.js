@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import Reviews from '../../Pages/Reviews/Reviews';
 
 
 const SingleServices = () => {
     const { _id, title, img, desc, price, rating } = useLoaderData();
-   
+   useTitle('Single Service');
     return (
         
             <div className='p-5'>

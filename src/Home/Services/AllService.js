@@ -1,10 +1,12 @@
 import React,{useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import AllServicesCard from './AllServicesCard';
 
 const AllService = () => {
     const [allservices, setAllServices] = useState([]);
+    useTitle('Service');
     const {user} = useContext(AuthContext);
     useEffect(()=>{
         fetch('http://localhost:5000/allservices')

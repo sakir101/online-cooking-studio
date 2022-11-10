@@ -5,8 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReviewCard from './ReviewCard';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const Reviews = ({ _id, title }) => {
+    
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     
