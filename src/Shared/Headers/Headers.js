@@ -11,7 +11,6 @@ const Headers = () => {
     }
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='faq'>Faq</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         {
             user?.email?

@@ -11,8 +11,8 @@ const Banner = () => {
                     Website
                 </h1>
             </div>
-            <div>
-                <img src={chef} alt="Female Chef" className='sm:h-1/2'/>
+            <div >
+                <img src={chef} alt="Female Chef" className='sm:h-48 lg:h-full'/>
             </div>
 
         </div>
