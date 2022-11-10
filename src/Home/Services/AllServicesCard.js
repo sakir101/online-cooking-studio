@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const AllServicesCard = ({ allservice }) => {
     const { _id, title, img, rating, price, desc } = allservice;
-    console.log(desc.length)
     return (
         <div>
             <div className="card bg-base-100 shadow-xl">

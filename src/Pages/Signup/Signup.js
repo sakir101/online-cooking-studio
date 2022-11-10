@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,10 +7,11 @@ import img from '../../Assets/signup/signup.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 const Signup = () => {
-    const {createUser, signInGoogleHandler} = useContext(AuthContext);
+    const { createUser, signInGoogleHandler } = useContext(AuthContext);
+    const [error, setError] = useState();
     const googleProvider = new GoogleAuthProvider();
     useTitle('Register')
-    const handleSignup = event => { 
+    const handleSignup = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -20,23 +21,36 @@ const Signup = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
                 toast('Signup successful')
             })
-            .catch(err => console.error(err));
+            .catch(err => setError(err.message));
     }
 
-    const googleSignIn = () =>{
+    const googleSignIn = () => {
         signInGoogleHandler(googleProvider)
-        .then(result => {
-            const users = result.user;
-            console.log(users);
-            
-          })
-          .catch(error => {
-            console.log('error:', error)
-          })
+            .then(result => {
+                const users = result.user;
+                const currentUser = {
+                    email: users.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        toast('Login Successful')
+                        localStorage.setItem('rannabannaToken', data.token);
+                    })
+
+            })
+            .catch(error => {
+                console.log('error:', error)
+            })
     }
 
     return (
@@ -73,6 +87,7 @@ const Signup = () => {
                         <div className="form-control mt-6">
                             <input type="submit" value="Sign Up" className='btn bg-blue-600' />
                         </div>
+                        <p className='text-xl text-red-700 font-bold'>{error}</p>
                         <div>
                             <button className='btn btn-outline btn-xl btn-rounded my-3 w-full' onClick={googleSignIn}>Google Signup</button>
                         </div>

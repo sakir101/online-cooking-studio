@@ -26,7 +26,6 @@ const MyReviewCard = ({ myReview }) => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
             if (data.modifiedCount > 0) {
                 toast('Update review successfully')
             }
@@ -45,7 +44,6 @@ const MyReviewCard = ({ myReview }) => {
             })
             .then(res=> res.json())
             .then(data=>{
-                console.log(data);
                     if (data.deletedCount > 0) {
                         toast('Delete Review Successfully');
                         window.location.reload(false);
