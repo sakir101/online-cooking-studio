@@ -14,13 +14,30 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         handleSignin(email, password)
-        .then(result => {
+            .then(result => {
                 const user = result.user;
-                console.log(user);
+
                 form.reset();
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('rannabannaToken', data.token);
+                        navigate(from, { replace: true });
+                    })
+                
             })
-        .catch(err => console.log(err))
+            .catch(err => console.log(err))
     }
     return (
         <div className="hero my-20">

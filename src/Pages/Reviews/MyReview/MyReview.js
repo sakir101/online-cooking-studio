@@ -6,7 +6,11 @@ const MyReview = () => {
     const {user} = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:5000/review/${user?.email}`)
+        fetch(`http://localhost:5000/onereview?email=${user?.email}`,{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('rannabannaToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data => setMyReviews(data))
     },[user])
