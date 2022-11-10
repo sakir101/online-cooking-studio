@@ -13,6 +13,7 @@ const MyReview = () => {
     return (
         <div>
             {
+                myReviews.length ===0? <div className='text-3xl text-red-600 font-bold flex items-center justify-center'>No Review to show</div>:
                 myReviews.map(myReview=> <MyReviewCard key={myReview._id} myReview={myReview}></MyReviewCard>)
             }
         </div>

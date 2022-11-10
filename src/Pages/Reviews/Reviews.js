@@ -10,8 +10,9 @@ const Reviews = ({ _id, title }) => {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     
-    const p = 1;
+   
     const handleReview = event => {
+        event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -26,7 +27,7 @@ const Reviews = ({ _id, title }) => {
             img: img,
             serviceId: _id,
             serviceName: title,
-            time: moment().format('LTS'), 
+            time: moment().format('MMMM Do YYYY, h:mm:ss a'),
             desc: message
         }
        
@@ -59,6 +60,10 @@ const Reviews = ({ _id, title }) => {
             setReviews(filterData);
         })
     },[_id])
+
+    const refresh =()=>{
+        window.location.reload(false);
+    }
     return (
         <div>
             <div className='flex justify-between my-6'>
@@ -85,7 +90,7 @@ const Reviews = ({ _id, title }) => {
                             <textarea name='desc' placeholder="food desc" className="textarea textarea-info h-24 w-full" required></textarea>
                             <button className='btn btn-primary my-5'>Submit</button>
                             <div className="modal-action">
-                                <label htmlFor="my-modal" className="btn">Close</label>
+                                <label htmlFor="my-modal" className="btn" onClick={refresh}>Close</label>
                             </div>
                             <ToastContainer />
                         </form>
