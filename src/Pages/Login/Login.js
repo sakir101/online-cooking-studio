@@ -26,7 +26,7 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://assignment-11-server-rouge-psi.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -35,7 +35,7 @@ const Reviews = ({ _id, title }) => {
        
         
 
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://assignment-11-server-rouge-psi.vercel.app/addreview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -54,7 +54,7 @@ const Reviews = ({ _id, title }) => {
 
     
     useEffect(()=>{
-        fetch('http://localhost:5000/review')
+        fetch('https://assignment-11-server-rouge-psi.vercel.app/review')
         .then(res => res.json())
         .then(data => {
             const filterData = data.filter(x => x.serviceId === _id )

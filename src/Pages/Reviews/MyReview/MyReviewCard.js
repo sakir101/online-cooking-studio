@@ -16,7 +16,7 @@ const MyReviewCard = ({ myReview }) => {
             desc: message
         }
 
-        fetch(`http://localhost:5000/review/${_id}`,{
+        fetch(`https://assignment-11-server-rouge-psi.vercel.app/${_id}`,{
             method: 'PATCH',
             headers:{
                 'content-type': 'application/json',
@@ -39,7 +39,7 @@ const MyReviewCard = ({ myReview }) => {
     const handleDelete = () =>{
         const proceed = window.confirm(`Are you sure you want to delete`)
         if(proceed){
-            fetch(`http://localhost:5000/review/${_id}`, {
+            fetch(`https://assignment-11-server-rouge-psi.vercel.app/${_id}`, {
                 method: 'DELETE'
             })
             .then(res=> res.json())

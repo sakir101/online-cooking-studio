@@ -8,7 +8,7 @@ const MyReview = () => {
     const {user} = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:5000/onereview?email=${user?.email}`,{
+        fetch(`https://assignment-11-server-rouge-psi.vercel.app/onereview?email=${user?.email}`,{
             headers: {
                 authorization: `Bearer ${localStorage.getItem('rannabannaToken')}`
             }

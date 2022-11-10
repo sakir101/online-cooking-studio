@@ -9,7 +9,7 @@ const AllService = () => {
     useTitle('Service');
     const {user} = useContext(AuthContext);
     useEffect(()=>{
-        fetch('http://localhost:5000/allservices')
+        fetch('https://assignment-11-server-rouge-psi.vercel.app/allservices')
         .then(res => res.json())
         .then(data => setAllServices(data))
     },[])

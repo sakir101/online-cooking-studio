@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><SingleServices></SingleServices></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/allservices/${params.id}`)
+                loader: ({params}) => fetch(`https://assignment-11-server-rouge-psi.vercel.app/allservices/${params.id}`)
             },
             {
                 path: '/signup',
