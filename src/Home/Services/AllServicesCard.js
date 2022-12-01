@@ -16,7 +16,7 @@ const AllServicesCard = ({ allservice }) => {
                     </h2>
                    <p>
                     {
-                        desc.length> 100? `${desc.slice(0,100)}...`: {desc}
+                        desc.length> 100? `${desc.slice(0,100)}...`: desc
                     }
                    </p>
                    <p className='font-bold text-red-600'>Price: {price} BDT</p>

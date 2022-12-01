@@ -1,16 +1,21 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import img from '../../Assets/signup/signup.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+
 const Signup = () => {
     const { createUser, signInGoogleHandler } = useContext(AuthContext);
     const [error, setError] = useState();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const googleProvider = new GoogleAuthProvider();
     useTitle('Register')
+
     const handleSignup = event => {
         event.preventDefault();
         const form = event.target;
@@ -18,11 +23,27 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 form.reset();
-                toast('Signup successful')
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('https://assignment-11-server-rouge-psi.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        toast('Signup Successful')
+                        localStorage.setItem('rannabannaToken', data.token);
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(err => setError(err.message));
     }
@@ -43,7 +64,7 @@ const Signup = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        toast('Login Successful')
+                        toast('Signup Successful')
                         localStorage.setItem('rannabannaToken', data.token);
                     })
 
